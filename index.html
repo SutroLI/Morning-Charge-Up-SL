@@ -3,105 +3,122 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Morning Charge Up! - 7 Minute Workout</title>
-  <meta name="description" content="A fun 7-minute morning workout timer with 7 energizing exercises to supercharge your day.">
-  <meta property="og:title" content="Morning Charge Up! - 7 Minute Workout">
-  <meta property="og:description" content="7 minutes to wake up your body and supercharge your day">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <title>Morning Charge Up — Sutro Li</title>
+  <meta name="description" content="A 7-minute morning workout timer with 7 energizing exercises.">
+  <meta property="og:title" content="Morning Charge Up — Sutro Li">
+  <meta property="og:description" content="7 minutes to wake up your body and start your day">
+  <link rel="icon" type="image/png" href="./assets/SL-Arrow-only.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: hsl(240 10% 6%);
-      --fg: hsl(0 0% 95%);
-      --muted: hsl(240 5% 65%);
-      --card: hsl(240 10% 10%);
-      --pink: #ff0080;
-      --purple: #8000ff;
-      --orange: #ff6600;
+      --brand: #1FB8E9;
+      --brand-dark: #0E5E79;
+      --brand-amber: #FFB208;
+      --text-on-brand: #FFFFFF;
+      --text-on-brand-soft: #E5F6FD;
+      --brand-50: #D2F1FB;
+      --brand-100: #AEE5F7;
+      --brand-200: #8BDAF4;
+      --brand-400: #67CFF0;
+      --brand-500: #43C3ED;
+      --brand-wash: #F5FCFE;
+      --brand-wash-alt: #F0F9FC;
+      --brand-border-light: #B8D4E0;
+      --gray-90: #1A1A1A;
+      --gray-80: #333333;
+      --gray-70: #4D4D4D;
+      --gray-50: #6B7280;
+      --gray-40: #757575;
+      --gray-30: #9CA3AF;
+      --gray-20: #E2E5EB;
+      --gray-15: #E5E5E5;
+      --gray-10: #F0F1F3;
+      --gray-05: #F6F7F9;
+      --gray-00: #FFFFFF;
+      --gray-empty: #F2F2F2;
+      --shadow-subtle: 0 2px 8px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+      --shadow-card: 0 14px 30px rgba(15,23,42,0.06);
+      --shadow-button-brand: 0 2px 6px rgba(31,184,233,0.35);
+      --radius-sm: 8px;
+      --radius-md: 10px;
+      --radius-xl: 16px;
+      --font-family: "Lato", system-ui, -apple-system, sans-serif;
     }
 
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: var(--font-family);
       background:
-        radial-gradient(ellipse at 20% 0%, rgba(255,0,128,0.15) 0%, transparent 50%),
-        radial-gradient(ellipse at 80% 100%, rgba(255,100,0,0.1) 0%, transparent 50%),
-        radial-gradient(ellipse at 50% 50%, rgba(120,0,255,0.08) 0%, transparent 60%),
-        var(--bg);
-      color: var(--fg);
+        linear-gradient(180deg, var(--gray-00) 0%, var(--brand-wash) 55%, var(--brand-50) 100%);
+      color: var(--gray-90);
       min-height: 100vh;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
+      line-height: 1.5;
     }
 
     h1, h2, h3 {
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: var(--font-family);
       font-weight: 700;
-      letter-spacing: -0.02em;
+      color: var(--brand-dark);
+      letter-spacing: 0.02em;
     }
 
-    .neon-gradient {
-      background: linear-gradient(135deg, var(--pink) 0%, var(--purple) 50%, var(--orange) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+    .brand-gradient-text {
+      color: var(--brand-dark);
     }
 
-    .glass-card {
-      background: rgba(20, 20, 30, 0.8);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 12px;
+    .card {
+      background: var(--gray-00);
+      border: 1px solid var(--gray-20);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-subtle);
     }
 
-    .neon-border {
-      border: 2px solid transparent;
-      background: linear-gradient(var(--card), var(--card)) padding-box,
-                  linear-gradient(135deg, var(--pink), var(--purple), var(--orange)) border-box;
-    }
-
-    .neon-box-glow {
-      box-shadow:
-        0 0 20px rgba(255,0,128,0.3),
-        0 0 40px rgba(128,0,255,0.2),
-        inset 0 0 20px rgba(255,0,128,0.05);
+    .card-elevated {
+      background: var(--gray-00);
+      border: 1px solid var(--gray-15);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-card);
     }
 
     .btn {
       border: none;
       cursor: pointer;
-      border-radius: 12px;
+      border-radius: var(--radius-sm);
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 12px;
-      font-weight: 600;
-      transition: all 0.3s;
+      gap: 10px;
+      font-weight: 700;
+      transition: background 0.2s, box-shadow 0.2s, border-color 0.2s, color 0.2s;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
-      font-family: 'Inter', sans-serif;
+      font-family: var(--font-family);
     }
 
     .btn-primary {
-      border: 2px solid transparent;
-      background: linear-gradient(var(--card), var(--card)) padding-box,
-                  linear-gradient(135deg, var(--pink), var(--purple), var(--orange)) border-box;
-      color: white;
+      background: var(--brand);
+      color: var(--text-on-brand);
+      box-shadow: var(--shadow-button-brand);
     }
-    .btn-primary:hover { box-shadow: 0 0 30px rgba(255,0,128,0.5); }
+    .btn-primary:hover { background: var(--brand-dark); box-shadow: none; }
 
     .btn-secondary {
-      border: 1px solid rgba(255,255,255,0.2);
-      background: rgba(255,255,255,0.05);
-      color: white;
+      background: var(--gray-00);
+      color: var(--gray-80);
+      border: 2px solid var(--brand);
     }
-    .btn-secondary:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.3); }
+    .btn-secondary:hover { background: var(--brand-wash); }
 
-    .btn-md { font-size: 16px; padding: 12px 24px; }
-    .btn-lg { font-size: 20px; padding: 16px 32px; }
-    .btn-xl { font-size: 24px; padding: 20px 40px; }
+    .btn-md { font-size: 0.95rem; padding: 12px 22px; }
+    .btn-lg { font-size: 1rem; padding: 14px 28px; }
+    .btn-xl { font-size: 1.125rem; padding: 18px 36px; }
 
     .screen {
       min-height: 100vh;
@@ -109,33 +126,67 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 16px;
+      padding: 20px;
       position: relative;
     }
 
     .hidden { display: none !important; }
 
-    .glow-bg {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(80px);
-      pointer-events: none;
+    .topbar {
+      width: 100%;
+      height: 56px;
+      background: var(--brand);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      z-index: 10;
+      flex-shrink: 0;
+    }
+
+    .topbar-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .topbar-logo {
+      height: 28px;
+      width: auto;
+      display: block;
+    }
+
+    .topbar-title {
+      color: var(--text-on-brand);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      line-height: 1.15;
+    }
+
+    .home-mark {
+      width: 56px;
+      height: auto;
+      margin: 0 auto 20px;
+      display: block;
     }
 
     .progress-bar-container {
       width: 100%;
       max-width: 400px;
       height: 8px;
-      background: rgba(255,255,255,0.1);
+      background: var(--gray-empty);
       border-radius: 9999px;
       overflow: hidden;
       margin-bottom: 32px;
+      border: 1px solid var(--gray-20);
     }
 
     .progress-bar-fill {
       height: 100%;
       border-radius: 9999px;
-      background: linear-gradient(90deg, var(--pink), var(--purple), var(--orange));
+      background: linear-gradient(90deg, var(--brand-500), var(--brand), var(--brand-dark));
       transition: width 0.5s ease;
     }
 
@@ -150,10 +201,11 @@
 
     .timer-glow {
       position: absolute;
-      inset: 0;
+      inset: 8%;
       border-radius: 50%;
-      filter: blur(30px);
-      opacity: 0.3;
+      opacity: 0.35;
+      background: radial-gradient(circle, var(--brand-100) 0%, transparent 70%);
+      transition: background 0.4s ease;
     }
 
     .timer-svg {
@@ -170,30 +222,33 @@
     }
 
     .timer-number {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 96px;
+      font-family: var(--font-family);
+      font-size: 88px;
       font-weight: 700;
+      color: var(--brand-dark);
+      line-height: 1;
     }
 
     .timer-label {
-      font-size: 14px;
-      color: var(--muted);
-      font-weight: 600;
+      font-size: 12px;
+      color: var(--gray-50);
+      font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.1em;
+      margin-top: 4px;
     }
 
     .workout-grid {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 32px;
+      gap: 28px;
       align-items: center;
       width: 100%;
       max-width: 960px;
     }
 
     .exercise-image-box {
-      padding: 24px;
+      padding: 20px;
       width: 100%;
       max-width: 400px;
       aspect-ratio: 1;
@@ -202,8 +257,11 @@
       justify-content: center;
       position: relative;
       overflow: hidden;
-      border-radius: 12px;
+      border-radius: var(--radius-xl);
       margin: 0 auto;
+      background: var(--gray-00);
+      border: 1px solid var(--gray-20);
+      box-shadow: var(--shadow-card);
     }
 
     .exercise-image-box img {
@@ -212,165 +270,202 @@
       object-fit: contain;
     }
 
-    .workout-header {
-      padding: 16px;
+    .workout-body {
+      flex: 1;
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
       align-items: center;
-      z-index: 10;
+      justify-content: center;
+      padding: 20px 16px 32px;
+      max-width: 960px;
+      margin: 0 auto;
       width: 100%;
     }
-
-    .workout-header-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 24px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .home-btn {
-      background: none;
-      border: none;
-      color: var(--muted);
-      cursor: pointer;
-      padding: 8px;
-      transition: color 0.3s;
-    }
-    .home-btn:hover { color: white; }
 
     .header-actions {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
     }
 
     .wake-lock-indicator {
-      padding: 8px 12px;
-      border-radius: 999px;
+      padding: 6px 10px;
+      border-radius: var(--radius-sm);
       font-size: 11px;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
       font-weight: 700;
-      color: var(--muted);
-      border: 1px solid rgba(255,255,255,0.2);
-      background: rgba(255,255,255,0.05);
+      color: var(--text-on-brand-soft);
+      border: 1px solid rgba(255,255,255,0.35);
+      background: rgba(255,255,255,0.12);
     }
 
     .wake-lock-indicator.on {
-      color: white;
-      border-color: rgba(255, 0, 128, 0.7);
-      box-shadow: 0 0 14px rgba(255, 0, 128, 0.35);
+      color: var(--gray-90);
+      background: var(--brand-amber);
+      border-color: var(--brand-amber);
     }
 
+    .home-btn {
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.35);
+      color: var(--text-on-brand);
+      cursor: pointer;
+      padding: 8px;
+      border-radius: var(--radius-sm);
+      display: inline-flex;
+      transition: background 0.2s;
+    }
+    .home-btn:hover { background: rgba(255,255,255,0.28); }
+
     .home-icon {
-      width: 28px;
-      height: 28px;
+      width: 22px;
+      height: 22px;
     }
 
     .preview-grid {
-      margin-top: 64px;
+      margin-top: 40px;
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
+      gap: 10px;
       width: 100%;
-      max-width: 600px;
+      max-width: 560px;
     }
 
     .preview-item {
-      padding: 12px 16px;
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--muted);
+      padding: 12px 14px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--gray-70);
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.04em;
       text-align: center;
+      background: var(--gray-00);
+      border: 1px solid var(--gray-20);
+      border-radius: var(--radius-sm);
     }
 
     .countdown-number {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 160px;
+      font-family: var(--font-family);
+      font-size: 140px;
       font-weight: 700;
-      text-shadow: 0 0 40px rgba(255,0,128,0.5);
+      color: var(--brand);
+      line-height: 1;
     }
 
     .exercise-name {
-      font-size: 48px;
+      font-size: clamp(2rem, 6vw, 3.5rem);
       line-height: 1.1;
       text-transform: uppercase;
-      margin-bottom: 32px;
+      margin-bottom: 24px;
+      color: var(--brand-dark);
+      letter-spacing: 0.03em;
     }
 
     .up-next {
-      padding: 12px 16px;
-      color: var(--muted);
-      font-weight: 500;
+      padding: 10px 14px;
+      color: var(--gray-50);
+      font-weight: 400;
+      font-size: 0.875rem;
       text-transform: uppercase;
       letter-spacing: 0.05em;
       display: inline-block;
+      background: var(--gray-10);
+      border: 1px solid var(--gray-20);
+      border-radius: var(--radius-sm);
     }
 
-    .up-next span { color: white; font-weight: 600; }
+    .up-next span { color: var(--brand-dark); font-weight: 700; }
 
     .complete-title {
-      font-size: 48px;
+      font-size: clamp(2rem, 6vw, 3.25rem);
       text-transform: uppercase;
-      margin-bottom: 24px;
-      line-height: 1.1;
+      margin-bottom: 12px;
+      line-height: 1.15;
+      letter-spacing: 0.04em;
     }
 
     .complete-sub {
-      font-size: 24px;
-      font-weight: 600;
-      color: var(--muted);
-      margin-bottom: 48px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--gray-50);
+      margin-bottom: 36px;
+      letter-spacing: 0.02em;
+    }
+
+    .complete-bulb {
+      width: 72px;
+      height: auto;
+      margin: 0 auto 20px;
+      display: block;
     }
 
     .complete-buttons {
       display: flex;
-      gap: 16px;
+      gap: 12px;
       justify-content: center;
       flex-wrap: wrap;
     }
 
     .paused-text {
-      margin-top: 24px;
-      font-size: 20px;
+      margin-top: 20px;
+      font-size: 1rem;
       font-weight: 700;
-      color: var(--orange);
-      text-shadow:
-        0 0 10px rgba(255,102,0,0.8),
-        0 0 20px rgba(255,102,0,0.6),
-        0 0 40px rgba(255,102,0,0.4);
+      color: var(--brand-amber);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .home-title {
+      font-size: clamp(2.25rem, 8vw, 4rem);
+      line-height: 1.05;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--brand-dark);
+    }
+
+    .home-sub {
+      font-size: clamp(0.95rem, 2.5vw, 1.125rem);
+      color: var(--gray-50);
+      margin-bottom: 36px;
+      max-width: 420px;
+      margin-left: auto;
+      margin-right: auto;
+      font-weight: 400;
+    }
+
+    .countdown-label {
+      font-size: clamp(1rem, 3vw, 1.25rem);
+      color: var(--gray-50);
+      margin-bottom: 24px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 700;
+    }
+
+    .countdown-label span {
+      color: var(--brand-dark);
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
+      from { opacity: 0; transform: translateY(12px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
     @keyframes scaleIn {
-      from { opacity: 0; transform: scale(0.9); }
+      from { opacity: 0; transform: scale(0.96); }
       to { opacity: 1; transform: scale(1); }
     }
 
-    @keyframes pulse {
-      0%, 100% { opacity: 0.15; }
-      50% { opacity: 0.25; }
-    }
-
-    .animate-fade-in { animation: fadeIn 0.5s ease forwards; }
-    .animate-scale-in { animation: scaleIn 0.4s ease forwards; }
-    .animate-pulse { animation: pulse 3s ease-in-out infinite; }
+    .animate-fade-in { animation: fadeIn 0.45s ease forwards; }
+    .animate-scale-in { animation: scaleIn 0.35s ease forwards; }
 
     @media (min-width: 768px) {
       .preview-grid { grid-template-columns: repeat(4, 1fr); }
-      .exercise-name { font-size: 72px; }
-      .complete-title { font-size: 72px; }
-      .timer-container { width: 320px; height: 320px; }
-      .timer-number { font-size: 120px; }
+      .timer-container { width: 300px; height: 300px; }
+      .timer-number { font-size: 104px; }
+      .countdown-number { font-size: 160px; }
     }
 
     @media (min-width: 1024px) {
@@ -384,27 +479,23 @@
 
   <!-- HOME SCREEN -->
   <div id="screen-home" class="screen">
-    <div class="glow-bg animate-pulse" style="top:25%;left:25%;width:384px;height:384px;background:rgba(255,0,128,0.2);"></div>
-    <div class="glow-bg animate-pulse" style="bottom:25%;right:25%;width:320px;height:320px;background:rgba(128,0,255,0.15);animation-delay:0.7s;"></div>
-    <div class="glow-bg animate-pulse" style="top:50%;right:33%;width:256px;height:256px;background:rgba(255,100,0,0.1);animation-delay:1s;"></div>
-
     <div class="animate-scale-in" style="text-align:center;z-index:1;max-width:720px;width:100%;">
-      <h1 style="font-size:clamp(48px,10vw,96px);line-height:1;margin-bottom:24px;text-transform:uppercase;">
-        <span class="neon-gradient">MORNING</span><br>
-        <span class="neon-gradient">CHARGE UP!</span>
+      <img class="home-mark" src="./assets/SL-Arrow-only.png" alt="Sutro Li">
+      <h1 class="home-title">
+        Morning<br>Charge Up
       </h1>
-      <p style="font-size:clamp(18px,3vw,24px);color:var(--muted);margin-bottom:48px;max-width:480px;margin-left:auto;margin-right:auto;font-weight:500;text-transform:uppercase;letter-spacing:0.05em;">
-        7 MINUTES TO WAKE UP YOUR BODY AND SUPERCHARGE YOUR DAY
+      <p class="home-sub">
+        7 minutes to wake up your body and start your day.
       </p>
-      <button class="btn btn-primary btn-xl" onclick="startCountdown()" style="cursor:pointer;">
-        <svg class="icon" width="32" height="32" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3" fill="currentColor"></polygon></svg>
-        START WORKOUT
+      <button class="btn btn-primary btn-xl" onclick="startCountdown()">
+        <svg class="icon" width="22" height="22" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3" fill="currentColor" stroke="none"></polygon></svg>
+        Start workout
       </button>
       <div class="preview-grid">
-        <div class="glass-card preview-item">BUNNY HOPS</div>
-        <div class="glass-card preview-item">BODY WAVE</div>
-        <div class="glass-card preview-item">ARM SWING</div>
-        <div class="glass-card preview-item">TRUNK TWIST</div>
+        <div class="preview-item">Bunny hops</div>
+        <div class="preview-item">Body wave</div>
+        <div class="preview-item">Arm swing</div>
+        <div class="preview-item">Trunk twist</div>
       </div>
     </div>
   </div>
@@ -412,69 +503,72 @@
   <!-- COUNTDOWN SCREEN -->
   <div id="screen-countdown" class="screen hidden">
     <div class="animate-scale-in" style="text-align:center;">
-      <h2 style="font-size:clamp(24px,4vw,30px);color:var(--muted);margin-bottom:32px;text-transform:uppercase;letter-spacing:0.05em;">
-        GET READY FOR <span id="countdown-exercise-name" class="neon-gradient"></span>...
+      <h2 class="countdown-label">
+        Get ready for <span id="countdown-exercise-name"></span>…
       </h2>
-      <div id="countdown-number" class="neon-gradient countdown-number"></div>
+      <div id="countdown-number" class="countdown-number"></div>
     </div>
   </div>
 
   <!-- WORKOUT SCREEN -->
-  <div id="screen-workout" class="screen hidden" style="justify-content:flex-start;">
-    <div class="workout-header">
-      <div class="workout-header-title neon-gradient">MORNING CHARGE UP</div>
+  <div id="screen-workout" class="screen hidden" style="justify-content:flex-start;padding:0;">
+    <div class="topbar">
+      <div class="topbar-brand">
+        <img class="topbar-logo" src="./assets/SL_logo_white.png" alt="Sutro Li">
+        <div class="topbar-title">Morning Charge Up</div>
+      </div>
       <div class="header-actions">
-        <div id="wake-lock-status" class="wake-lock-indicator">SCREEN LOCK: OFF</div>
-        <button class="home-btn" onclick="showScreen('home')">
+        <div id="wake-lock-status" class="wake-lock-indicator">Screen lock: off</div>
+        <button class="home-btn" onclick="showScreen('home')" aria-label="Home">
           <svg class="icon home-icon" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
         </button>
       </div>
     </div>
 
-    <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:16px;max-width:960px;margin:0 auto;width:100%;">
+    <div class="workout-body">
       <div class="progress-bar-container">
         <div id="progress-bar" class="progress-bar-fill" style="width:0%"></div>
       </div>
 
       <div class="workout-grid">
         <div style="display:flex;flex-direction:column;align-items:center;order:2;">
-          <div class="timer-container" style="margin-bottom:32px;">
+          <div class="timer-container" style="margin-bottom:28px;">
             <div id="timer-glow" class="timer-glow"></div>
             <svg class="timer-svg" viewBox="0 0 100 100">
-              <circle cx="50" cy="50" r="45" fill="transparent" stroke="rgba(255,255,255,0.1)" stroke-width="4"/>
+              <circle cx="50" cy="50" r="45" fill="transparent" stroke="var(--gray-20)" stroke-width="4"/>
               <defs>
-                <linearGradient id="neonGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#ff0080"/>
-                  <stop offset="50%" stop-color="#8000ff"/>
-                  <stop offset="100%" stop-color="#ff6600"/>
+                <linearGradient id="brandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#43C3ED"/>
+                  <stop offset="50%" stop-color="#1FB8E9"/>
+                  <stop offset="100%" stop-color="#0E5E79"/>
                 </linearGradient>
               </defs>
               <circle id="timer-circle" cx="50" cy="50" r="45" fill="transparent"
-                stroke="url(#neonGrad)" stroke-width="4" stroke-linecap="round"
+                stroke="url(#brandGrad)" stroke-width="4" stroke-linecap="round"
                 stroke-dasharray="282.74" stroke-dashoffset="0"
-                style="filter:drop-shadow(0 0 10px rgba(255,0,128,0.6));transition:stroke-dashoffset 0.5s ease;"/>
+                style="transition:stroke-dashoffset 0.5s ease;"/>
             </svg>
             <div class="timer-text">
-              <div id="timer-number" class="timer-number neon-gradient">60</div>
-              <div class="timer-label">SECONDS LEFT</div>
+              <div id="timer-number" class="timer-number">60</div>
+              <div class="timer-label">Seconds left</div>
             </div>
           </div>
-          <div style="display:flex;gap:16px;">
+          <div style="display:flex;gap:12px;">
             <button id="btn-pause" class="btn btn-secondary btn-lg" onclick="togglePause()" style="min-width:140px;">
-              <svg id="icon-pause" class="icon" width="20" height="20" viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16" fill="currentColor"></rect><rect x="14" y="4" width="4" height="16" fill="currentColor"></rect></svg>
-              <svg id="icon-play" class="icon hidden" width="20" height="20" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3" fill="currentColor"></polygon></svg>
-              <span id="pause-text">PAUSE</span>
+              <svg id="icon-pause" class="icon" width="18" height="18" viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16" fill="currentColor" stroke="none"></rect><rect x="14" y="4" width="4" height="16" fill="currentColor" stroke="none"></rect></svg>
+              <svg id="icon-play" class="icon hidden" width="18" height="18" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3" fill="currentColor" stroke="none"></polygon></svg>
+              <span id="pause-text">Pause</span>
             </button>
           </div>
-          <div id="paused-label" class="paused-text hidden">PAUSED</div>
+          <div id="paused-label" class="paused-text hidden">Paused</div>
         </div>
 
         <div style="display:flex;flex-direction:column;align-items:center;text-align:center;order:1;">
-          <h2 id="current-exercise-name" class="exercise-name neon-gradient"></h2>
-          <div class="exercise-image-box neon-box-glow">
+          <h2 id="current-exercise-name" class="exercise-name"></h2>
+          <div class="exercise-image-box">
             <img id="current-exercise-img" src="" alt="">
           </div>
-          <div id="up-next" class="glass-card up-next" style="margin-top:24px;"></div>
+          <div id="up-next" class="up-next" style="margin-top:20px;"></div>
         </div>
       </div>
     </div>
@@ -483,16 +577,17 @@
   <!-- COMPLETE SCREEN -->
   <div id="screen-complete" class="screen hidden">
     <div class="animate-fade-in" style="text-align:center;">
-      <h1 class="complete-title neon-gradient">WORKOUT COMPLETE!</h1>
-      <p class="complete-sub">YOU CRUSHED IT! GREAT JOB!</p>
+      <img class="complete-bulb" src="./assets/BULB_ONLY.png" alt="">
+      <h1 class="complete-title">Workout complete</h1>
+      <p class="complete-sub">Nice work — you’re charged up.</p>
       <div class="complete-buttons">
         <button class="btn btn-secondary btn-md" onclick="showScreen('home')">
-          <svg class="icon" width="20" height="20" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-          HOME
+          <svg class="icon" width="18" height="18" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+          Home
         </button>
         <button class="btn btn-primary btn-md" onclick="restartWorkout()">
-          <svg class="icon" width="20" height="20" viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
-          AGAIN!
+          <svg class="icon" width="18" height="18" viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
+          Again
         </button>
       </div>
     </div>
@@ -547,13 +642,13 @@
       if (!indicator) return;
 
       if (!('wakeLock' in navigator)) {
-        indicator.textContent = 'SCREEN LOCK: UNSUPPORTED';
+        indicator.textContent = 'Screen lock: unsupported';
         indicator.classList.remove('on');
         return;
       }
 
       var isOn = !!(wakeLockSentinel && !wakeLockSentinel.released);
-      indicator.textContent = 'SCREEN LOCK: ' + (isOn ? 'ON' : 'OFF');
+      indicator.textContent = 'Screen lock: ' + (isOn ? 'on' : 'off');
       indicator.classList.toggle('on', isOn);
     }
 
@@ -693,7 +788,7 @@
       var next = exercises[index + 1];
       var upNext = document.getElementById('up-next');
       if (next) {
-        upNext.innerHTML = 'UP NEXT: <span>' + next.name + '</span>';
+        upNext.innerHTML = 'Up next: <span>' + next.name + '</span>';
         upNext.classList.remove('hidden');
       } else {
         upNext.classList.add('hidden');
@@ -726,9 +821,9 @@
       document.getElementById('timer-circle').setAttribute('stroke-dashoffset', offset);
 
       var pct = timeLeft / ex.duration;
-      var color = pct > 0.5 ? '#ff0080' : pct > 0.25 ? '#8000ff' : '#ff6600';
+      var color = pct > 0.5 ? '#1FB8E9' : pct > 0.25 ? '#0E5E79' : '#FFB208';
       document.getElementById('timer-glow').style.background =
-        'radial-gradient(circle, ' + color + ' 0%, transparent 70%)';
+        'radial-gradient(circle, ' + color + '33 0%, transparent 70%)';
     }
 
     function updateProgressBar() {
@@ -747,7 +842,7 @@
     function updatePauseButton() {
       document.getElementById('icon-pause').classList.toggle('hidden', isPaused);
       document.getElementById('icon-play').classList.toggle('hidden', !isPaused);
-      document.getElementById('pause-text').textContent = isPaused ? 'RESUME' : 'PAUSE';
+      document.getElementById('pause-text').textContent = isPaused ? 'Resume' : 'Pause';
     }
 
     function completeWorkout() {
@@ -756,10 +851,10 @@
       showScreen('complete');
       playSound('complete');
       confetti({
-        particleCount: 150,
+        particleCount: 120,
         spread: 70,
         origin: { y: 0.6 },
-        colors: ['#ff0080', '#8000ff', '#ff6600', '#00ffff']
+        colors: ['#1FB8E9', '#0E5E79', '#FFB208', '#43C3ED', '#AEE5F7']
       });
     }
 
